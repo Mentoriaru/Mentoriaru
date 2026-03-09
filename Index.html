@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentoria Rússia Premium | Seu Futuro na Rússia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rus-white: #FFFFFF;
+            --rus-blue: #0039A6;
+            --rus-red: #D52B1E;
+            --dark-blue: #00266e;
+            --shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* --- Barra de Alerta --- */
+        .top-bar {
+            background-color: var(--rus-red);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* --- Hero Section (Azul) --- */
+        header {
+            background: linear-gradient(rgba(0, 57, 166, 0.9), rgba(0, 38, 110, 0.9)), 
+                        url('https://images.unsplash.com/photo-1513326738677-b964603b136d?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        h1 { font-size: 2.5rem; font-weight: 900; margin-bottom: 20px; text-transform: uppercase; }
+        .hero-sub { font-size: 1.2rem; margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+        /* --- Botões --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--rus-red);
+            color: white;
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 5px 15px rgba(213, 43, 30, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { transform: scale(1.05); background-color: #b32016; }
+
+        /* --- Seção Promoção (Urgent) --- */
+        .promo-box {
+            background: #fff;
+            color: #333;
+            margin-top: 40px;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 10px solid var(--rus-red);
+            display: inline-block;
+        }
+
+        .timer { font-size: 1.5rem; color: var(--rus-red); font-weight: 900; }
+
+        /* --- Seção Branca (Problemas) --- */
+        .problems { padding: 60px 20px; background: var(--rus-white); text-align: center; }
+        .grid-problems {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .card-error {
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-bottom: 4px solid #ddd;
+        }
+        .card-error h3 { color: var(--rus-red); margin-bottom: 15px; }
+
+        /* --- Seção Azul (Serviços) --- */
+        .services { padding: 80px 20px; background: var(--rus-blue); color: white; }
+        .grid-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .service-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .service-item:hover { background: rgba(255,255,255,0.2); }
+        .service-item span { font-size: 2rem; font-weight: 900; color: var(--rus-red); display: block; }
+
+        /* --- Seção Planos (Vermelha) --- */
+        .pricing { padding: 80px 20px; background: #eee; }
+        .grid-pricing {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .plan {
+            background: white;
+            padding: 40px 25px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+        .plan.featured {
+            border: 4px solid var(--rus-blue);
+            transform: scale(1.05);
+            z-index: 2;
+        }
+        .badge {
+            background: var(--rus-blue);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .price { font-size: 2.5rem; font-weight: 900; color: var(--rus-blue); margin: 20px 0; }
+        .plan ul { list-style: none; text-align: left; margin-bottom: 30px; font-size: 0.9rem; }
+        .plan ul li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+        .plan ul li::before { content: "✓"; position: absolute; left: 0; color: green; font-weight: bold; }
+
+        /* --- Footer --- */
+        footer { background: #111; color: white; padding: 40px 20px; text-align: center; }
+        .contact-info { margin-top: 20px; color: #ccc; }
+
+        /* Responsividade Extra */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .plan.featured { transform: scale(1); }
+            .grid-pricing { gap: 50px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        ⚠️ ÚLTIMAS VAGAS DISPONÍVEIS - APENAS 7 RESTANTES ⚠️
+    </div>
+
+    <header>
+        <div class="container">
+            <h1>Chegue na RÚSSIA sem burocracia, erros ou dor de cabeça</h1>
+            <p class="hero-sub">Nós pegamos na sua mão e te guiamos por todo o processo - do Brasil até sua adaptação completa na Rússia.</p>
+            
+            <div class="promo-box">
+                <p>⚡ <strong>PROMOÇÃO ASSESSORIA POR LIGAÇÃO</strong></p>
+                <p>De <strike>R$ 450</strike> por apenas <strong>R$ 100</strong></p>
+                <p>Expira em: <span id="countdown" class="timer">--:--:--</span></p>
+                <br>
+                <a href="#" class="btn">QUERO AJUDA PROFISSIONAL AGORA</a>
+            </div>
+            <p style="margin-top: 15px;">★★★★★</p>
+        </div>
+    </header>
+
+    <section class="problems">
+        <div class="container">
+            <h2>O que acontece SE VOCÊ NÃO CONTRATAR?</h2>
+            <p>Ir sozinho pode transformar seu sonho em um pesadelo financeiro e jurídico.</p>
+            
+            <div class="grid-problems">
+                <div class="card-error">
+                    <h3>Perda do prazo do Visto</h3>
+                    <p>Documentação errada ou prazos perdidos resultam em visto negado e sonho adiado por meses.</p>
+                </div>
+                <div class="card-error">
+                    <h3>Dinheiro Bloqueado</h3>
+                    <p>A Rússia está fora do sistema financeiro. Sem ajuda, seus cartões NÃO FUNCIONAM e você fica sem nada.</p>
+                </div>
+                <div class="card-error">
+                    <h3>Sem Onde Ficar</h3>
+                    <p>Muitos hotéis não aceitam estrangeiros. Você pode chegar e não ter onde dormir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <h2>Serviços PREMIUM que oferecemos</h2>
+            <p>Atuamos como seu guia e tradutor informal com base em 2 anos de experiência real.</p>
+            
+            <div class="grid-services">
+                <div class="service-item"><span>01</span> Bolsa + Visto Russo</div>
+                <div class="service-item"><span>02</span> Suporte 24/7</div>
+                <div class="service-item"><span>03</span> Dicas de Quem Está Aqui</div>
+                <div class="service-item"><span>04</span> Câmbio TAXA ZERO</div>
+                <div class="service-item"><span>05</span> Recepção Aeroporto</div>
+                <div class="service-item"><span>06</span> Registro Obrigatório</div>
+                <div class="service-item"><span>07</span> Transporte Logística</div>
+                <div class="service-item"><span>08</span> Cartão Bancário Russo</div>
+                <div class="service-item"><span>09</span> Chip de Celular</div>
+                <div class="service-item"><span>10</span> Tradutores Oficiais</div>
+                <div class="service-item"><span>11</span> Apoio Contínuo</div>
+                <div class="service-item"><span>12</span> Pegamos na Mão</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="planos">
+        <div class="container">
+            <h2 style="text-align:center">Escolha seu plano de mentoria PREMIUM</h2>
+            <p style="text-align:center; color: var(--rus-red); font-weight: bold;">⚠️ Apenas 7 vagas disponíveis!</p>
+
+            <div class="grid-pricing">
+                <div class="plan">
+                    <h3>Mentoria Online</h3>
+                    <div class="price">R$ 597</div>
+                    <ul>
+                        <li>Orientação para bolsas</li>
+                        <li>Checklist de documentos</li>
+                        <li>Guia do visto passo a passo</li>
+                        <li>Suporte online 30 dias</li>
+                    </ul>
+                    <a href="#" class="btn" style="padding: 12px 20px; font-size: 0.9rem;">ESCOLHER ESTE PLANO</a>
+                </div>
+
+                <div class="plan featured">
+                    <div class="badge">⭐ MAIS VENDIDO ⭐</div>
+                    <h3>MENTORIA + CHEGADA</h3>
+                    <div class="price">R$ 1.497</div>
+                    <ul>
+                        <li>Tudo do Plano Online</li>
+                        <li>Recepção no aeroporto</li>
+                        <li>Câmbio com TAXA ZERO</li>
+                        <li>Auxílio chip e banco russo</li>
+                        <li>Suporte por 90 dias</li>
+                    </ul>
+                    <a href="#" class="btn" style="padding: 12px 20px; font-size: 0.9rem; background: var(--rus-blue);">QUERO ESTE PLANO AGORA</a>
+                </div>
+
+                <div class="plan">
+                    <h3>VIP EXCLUSIVO</h3>
+                    <div class="price">R$ 3.997</div>
+                    <ul>
+                        <li>Tudo dos anteriores</li>
+                        <li>Assistência para familiares</li>
+                        <li>Suporte prioritário 24/7</li>
+                        <li>Logística de passagens internas</li>
+                    </ul>
+                    <a href="#" class="btn" style="padding: 12px 20px; font-size: 0.9rem;">PLANO VIP EXCLUSIVO</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h3>MENTORIA RÚSSIA PREMIUM</h3>
+            <div class="contact-info">
+                <p>📧 contato@mentoriarussiapremium.com</p>
+                <p>📱 +7 (920) 609-9784 (WhatsApp Premium)</p>
+            </div>
+            <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.6;">
+                © 2026 Mentoria Rússia Premium. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Lógica do Contador Regressivo (48 horas = 2 dias)
+        function startCountdown() {
+            let duration = 48 * 60 * 60; // 48 horas em segundos
+            const display = document.querySelector('#countdown');
+
+            const timer = setInterval(function () {
+                let hours = parseInt(duration / 3600, 10);
+                let minutes = parseInt((duration % 3600) / 60, 10);
+                let seconds = parseInt(duration % 60, 10);
+
+                hours = hours < 10 ? "0" + hours : hours;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = hours + ":" + minutes + ":" + seconds;
+
+                if (--duration < 0) {
+                    clearInterval(timer);
+                    display.textContent = "PROMOÇÃO ENCERRADA";
+                }
+            }, 1000);
+        }
+
+        window.onload = startCountdown;
+    </script>
+</body>
+  </html>
